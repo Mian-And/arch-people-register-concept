@@ -1,21 +1,15 @@
-﻿using Client_ConceitoCadastro.Core.Application.Ports;
+﻿// Core/Application/UseCases/GetZipCode/GetZipCodeHandler.cs
+using Client_ConceitoCadastro.Core.Application.Ports;
 using Client_ConceitoCadastro.Core.Domain;
-using Core.Domain.ValueObjects;
 
-namespace Client_ConceitoCadastro.Core.Application.UseCases.GetZipCode
+namespace Client_ConceitoCadastro.Core.Application.UseCases.GetZipCode;
+
+public sealed class GetZipCodeHandler   // <- public
 {
-    internal sealed class GetZipCodeHandler
-    {
-        private readonly ICepLookupService _service;
-        public GetZipCodeHandler(ICepLookupService service) => _service = service;
+    private readonly ICepLookupService _service;
 
-        public async Task<Address?> HandleAsync(string cepRaw, CancellationToken ct = default)
-        {
-            if (!BrazilCep.TryCreate(cepRaw, out var cep))
-                throw new ArgumentException("CEP inválido.", nameof(cepRaw));
+    public GetZipCodeHandler(ICepLookupService service) => _service = service;
 
-            return await _service.LookupAsync(cep.Value, ct);
-        }
-
-    }
+    public Task<Address?> HandleAsync(string cepRaw, CancellationToken ct = default)
+        => _service.LookupAsync(new string(cepRaw.Where(char.IsDigit).ToArray()), ct);
 }
