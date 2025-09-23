@@ -15,4 +15,24 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Api\Contracts\" />
+    <Folder Include="Api\Controllers\" />
+    <Folder Include="Api\Filters\Auth\Swagger\" />
+    <Folder Include="Clients\AngularSPA\" />
+    <Folder Include="Clients\WPFApp\" />
+    <Folder Include="Core\Application\DTOs\" />
+    <Folder Include="Core\Application\UseCases\GetZipCode\" />
+    <Folder Include="Core\Application\UseCases\UpdateAddress\" />
+    <Folder Include="Core\Domain\BusinessRules\" />
+    <Folder Include="Core\Domain\Events\" />
+    <Folder Include="Infrastructure\Correios\" />
+    <Folder Include="Infrastructure\Http\" />
+    <Folder Include="Infrastructure\Observability\Serilog\" />
+    <Folder Include="Infrastructure\Persistence\" />
+    <Folder Include="Infrastructure\Resilience\" />
+    <Folder Include="Infrastructure\ZipCode\" />
+    <Folder Include="Tests\" />
+  </ItemGroup>
+
 </Project>
