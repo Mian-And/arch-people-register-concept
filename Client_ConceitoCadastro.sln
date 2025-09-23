@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36511.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client_ConceitoCadastro", "Client_ConceitoCadastro\Client_ConceitoCadastro.csproj", "{7DE0A45D-00B6-4800-A90B-7903D40A3971}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{380A7511-A354-6D7A-0CC0-8FA1F1BA7B6C}"
+	ProjectSection(SolutionItems) = preProject
+		AbstractCRUD.cs = AbstractCRUD.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		AbstractCRUD.cs = AbstractCRUD.cs
+		CepLookupServiceBase.cs = CepLookupServiceBase.cs
+		CorreiosSoapCepLookupService.cs = CorreiosSoapCepLookupService.cs
+		ViaCepLookupService.cs = ViaCepLookupService.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AbstractClasses", "AbstractClasses", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		AbstractCRUD.cs = AbstractCRUD.cs
+		CepLookupServiceBase.cs = CepLookupServiceBase.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ImplementationModules", "ImplementationModules", "{8425F977-4A27-45EE-85E6-6A1B804A7CF0}"
+	ProjectSection(SolutionItems) = preProject
+		CorreiosSoapCepLookupService.cs = CorreiosSoapCepLookupService.cs
+		ViaCepLookupService.cs = ViaCepLookupService.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3E3BC231-1445-4012-B2C2-A205AA2D11C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{DD5F53A9-EA96-4A14-9E75-3AF81C5985DE}"
+	ProjectSection(SolutionItems) = preProject
+		Address.cs = Address.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{52C3F6EC-C8F4-40F7-857A-DA0CE4744BD7}"
+	ProjectSection(SolutionItems) = preProject
+		GetAddressByCep.cs = GetAddressByCep.cs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DE0A45D-00B6-4800-A90B-7903D40A3971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE0A45D-00B6-4800-A90B-7903D40A3971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE0A45D-00B6-4800-A90B-7903D40A3971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE0A45D-00B6-4800-A90B-7903D40A3971}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DD5F53A9-EA96-4A14-9E75-3AF81C5985DE} = {3E3BC231-1445-4012-B2C2-A205AA2D11C5}
+		{52C3F6EC-C8F4-40F7-857A-DA0CE4744BD7} = {3E3BC231-1445-4012-B2C2-A205AA2D11C5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93D8E519-4B7A-4ABD-A0A2-99DEF0A4CF04}
+	EndGlobalSection
+EndGlobal
