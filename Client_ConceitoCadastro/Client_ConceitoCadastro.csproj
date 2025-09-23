@@ -22,7 +22,6 @@
     <Folder Include="Clients\AngularSPA\" />
     <Folder Include="Clients\WPFApp\" />
     <Folder Include="Core\Application\DTOs\" />
-    <Folder Include="Core\Application\UseCases\GetZipCode\" />
     <Folder Include="Core\Application\UseCases\UpdateAddress\" />
     <Folder Include="Core\Domain\BusinessRules\" />
     <Folder Include="Core\Domain\Events\" />
@@ -31,7 +30,6 @@
     <Folder Include="Infrastructure\Observability\Serilog\" />
     <Folder Include="Infrastructure\Persistence\" />
     <Folder Include="Infrastructure\Resilience\" />
-    <Folder Include="Infrastructure\ZipCode\" />
     <Folder Include="Tests\" />
   </ItemGroup>
 

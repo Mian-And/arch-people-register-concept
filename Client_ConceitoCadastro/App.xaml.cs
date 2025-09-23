@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Client_ConceitoCadastro.Core.Application;
+using Client_ConceitoCadastro.Core.Application.Ports;
+using Client_ConceitoCadastro.Core.Application.UseCases.GetZipCode;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Http;
 using System.Windows;
@@ -14,17 +17,19 @@ public partial class App : Application
             services.AddHttpClient();
 
             //// CEP (troque aqui por Correios SOAP se quiser)
-            services.AddSingleton<ICepLookupService, ViaCepLookupService>();
-            services.AddSingleton<GetAddressByCep>();
+            services.AddTransient<ICepLookupService, ViaCepLookupService>();
+            services.AddTransient<GetZipCodeHandler>();
 
             // View + VM
-            services.AddSingleton<MainWindow>();
             services.AddTransient<AddressViewModel>();
+            services.AddSingleton<MainWindow>();
         })
         .Build();
 
     protected override async void OnStartup(StartupEventArgs e)
     {
+        base.OnStartup(e);
+
         await AppHost.StartAsync();
 
         var main = AppHost.Services.GetRequiredService<MainWindow>();
@@ -33,8 +38,6 @@ public partial class App : Application
 
         MainWindow = main;
         main.Show();
-
-        base.OnStartup(e);
     }
 
     protected override async void OnExit(ExitEventArgs e)

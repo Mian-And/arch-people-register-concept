@@ -20,12 +20,7 @@ namespace Client_ConceitoCadastro
         {
             InitializeComponent();
 
-            InicializeBaseArchitecture();
-        }
-
-        private void InicializeBaseArchitecture()
-        {
-            throw new NotImplementedException();
+            
         }
     }
 }
