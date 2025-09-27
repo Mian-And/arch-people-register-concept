@@ -15,10 +15,7 @@ public partial class AddressViewModel : ObservableObject
     private readonly GetZipCodeHandler _useCase;
 
     // Construtor: o DI injeta o caso de uso GetAddressByCep
-    public AddressViewModel(GetZipCodeHandler useCase)
-    {
-        _useCase = useCase;
-    }
+    public AddressViewModel(GetZipCodeHandler useCase) => _useCase = useCase;
 
     // Propriedades observáveis ligadas ao XAML
     [ObservableProperty] private string cep;
@@ -26,23 +23,35 @@ public partial class AddressViewModel : ObservableObject
     [ObservableProperty] private string neighborhood;
     [ObservableProperty] private string city;
     [ObservableProperty] private string state;
+    [ObservableProperty] private string statusMessage;
 
     // Comando que a View pode chamar (ex.: Button "Buscar")
     [RelayCommand]
     private async Task LookupAsync()
     {
-        var result = await _useCase.HandleAsync(Cep);
+        StatusMessage = "Consultando...";
+        try
+        {
+            var address = await _useCase.HandleAsync(Cep);
 
-        if (result is not null)
-        {
-            Street = result.Street;
-            Neighborhood = result.Neighborhood;
-            City = result.City;
-            State = result.State;
+            if (address is null || string.IsNullOrEmpty(address.Street))
+            {
+                Street = Neighborhood = City = State = string.Empty;
+                StatusMessage = "CEP não encontrado.";
+                return;
+            }
+
+            Street = address.Street;
+            Neighborhood = address.Neighborhood;
+            City = address.City;
+            State = address.State;
+            StatusMessage = "OK";
         }
-        else
+        catch (Exception ex)
         {
-            Street = Neighborhood = City = State = "CEP não encontrado.";
+            // mensagem amigável pra UI; log detalhado fica na Infra
+            StatusMessage = "Erro ao consultar CEP.";
+            // TODO: expor ILogging se quiser detalhar aqui
         }
     }
 }

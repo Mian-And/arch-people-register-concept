@@ -1,37 +1,29 @@
 ﻿<Window x:Class="Client_ConceitoCadastro.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Consulta CEP" Height="300" Width="400"
+        Title="Consulta CEP" Height="320" Width="420"
         WindowStartupLocation="CenterScreen">
-    <StackPanel Margin="20" VerticalAlignment="Top">
+  <StackPanel Margin="20" VerticalAlignment="Top">
+    <TextBlock Text="CEP" FontWeight="Bold"/>
+    <TextBox Text="{Binding Cep, UpdateSourceTrigger=PropertyChanged}"
+             Width="200" Height="26" Margin="0,4,0,8"/>
 
-        <!-- Entrada do CEP -->
-        <TextBox Text="{Binding Cep, UpdateSourceTrigger=PropertyChanged}"
-                 Width="200" Height="25"
-                 Margin="0,0,0,10"
-                 />
-        <!--PlaceholderText/PlaceholderText="Digite o CEP"-->
+    <Button Content="Buscar" Command="{Binding LookupCommand}"
+            Width="110" Height="30" HorizontalAlignment="Left"/>
 
-        <!-- Botão que dispara LookupCommand -->
-        <Button Content="Buscar"
-                Command="{Binding LookupCommand}"
-                Width="100" Height="30"
-                HorizontalAlignment="Left"/>
+    <Separator Margin="0,14,0,14"/>
 
-        <!-- Resultados -->
-        <StackPanel Margin="0,20,0,0">
-            <TextBlock Text="Logradouro:" FontWeight="Bold"/>
-            <TextBlock Text="{Binding Street}"/>
+    <UniformGrid Columns="2" Rows="4" HorizontalAlignment="Left" Margin="0,0,0,8">
+      <TextBlock Text="Logradouro:" FontWeight="Bold"/>
+      <TextBlock Text="{Binding Street}"/>
+      <TextBlock Text="Bairro:" FontWeight="Bold"/>
+      <TextBlock Text="{Binding Neighborhood}"/>
+      <TextBlock Text="Cidade:" FontWeight="Bold"/>
+      <TextBlock Text="{Binding City}"/>
+      <TextBlock Text="UF:" FontWeight="Bold"/>
+      <TextBlock Text="{Binding State}"/>
+    </UniformGrid>
 
-            <TextBlock Text="Bairro:" FontWeight="Bold" Margin="0,5,0,0"/>
-            <TextBlock Text="{Binding Neighborhood}"/>
-
-            <TextBlock Text="Cidade:" FontWeight="Bold" Margin="0,5,0,0"/>
-            <TextBlock Text="{Binding City}"/>
-
-            <TextBlock Text="Estado:" FontWeight="Bold" Margin="0,5,0,0"/>
-            <TextBlock Text="{Binding State}"/>
-        </StackPanel>
-
-    </StackPanel>
+    <TextBlock Text="{Binding StatusMessage}" Foreground="Gray" FontStyle="Italic"/>
+  </StackPanel>
 </Window>

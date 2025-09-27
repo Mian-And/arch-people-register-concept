@@ -21,23 +21,41 @@ public sealed class ViaCepLookupService : ICepLookupService
         if (dto is null || dto.Error) return null;
 
         return new Address(
-            ZipCode: dto.ZipCode?.Replace("-", "") ?? normalizedCep,
-            Street: dto.Street ?? "",
-            Neighborhood: dto.Neighborhood ?? "",
-            City: dto.City ?? "",
-            State: dto.State ?? "",
-            Complement: dto.Complement
+            ZipCode: dto.Cep?.Replace("-", "") ?? normalizedCep,
+            Street: dto.Logradouro ?? "",
+            Neighborhood: dto.Bairro ?? "",
+            City: dto.Localidade ?? "",
+            State: dto.Estado ?? "",
+            Complement: dto.Complemento
             );
     }
 
     private sealed class ViaCepDto
     {
-        public string? ZipCode { get; set; }
-        public string? Street { get; set; }
-        public string? Complement { get; set; }
-        public string? Neighborhood { get; set; }
-        public string? City { get; set; }
-        public string? State { get; set; }
+        public string? Cep { get; set; }
+        public string? Logradouro { get; set; }
+        public string? Complemento { get; set; }
+        public string? Unidade { get; set; }
+        public string? Bairro { get; set; }
+        public string? Localidade { get; set; }
+        public string? Uf { get; set; }
+        public string? Estado { get; set; }
+        public string? Regiao { get; set; }
+        public string? Ibge { get; set; }
+        public string? Gia { get; set; }
+        public string? Ddd { get; set; }
+        public string? Siafi { get; set; }
         public bool Error { get; set; }
     }
+
+    //private sealed class ViaCepDto
+    //{
+    //    public string? ZipCode { get; set; }
+    //    public string? Street { get; set; }
+    //    public string? Complement { get; set; }
+    //    public string? Neighborhood { get; set; }
+    //    public string? City { get; set; }
+    //    public string? State { get; set; }
+    //    public bool Error { get; set; }
+    //}
 }

@@ -16,20 +16,21 @@ public partial class App : Application
             //// HTTP/Infra
             services.AddHttpClient();
 
-            //// CEP (troque aqui por Correios SOAP se quiser)
+            //// CEP (troque aqui por CorreiosSoapCepLookupService  se quiser)
             services.AddTransient<ICepLookupService, ViaCepLookupService>();
+            //services.AddTransient<ICepLookupService, CorreiosSoapCepLookupService>();
+
+            //use cases
             services.AddTransient<GetZipCodeHandler>();
 
             // View + VM
-            services.AddTransient<AddressViewModel>();
             services.AddSingleton<MainWindow>();
+            services.AddTransient<AddressViewModel>();
         })
         .Build();
 
     protected override async void OnStartup(StartupEventArgs e)
     {
-        base.OnStartup(e);
-
         await AppHost.StartAsync();
 
         var main = AppHost.Services.GetRequiredService<MainWindow>();
@@ -38,6 +39,8 @@ public partial class App : Application
 
         MainWindow = main;
         main.Show();
+
+        base.OnStartup(e);
     }
 
     protected override async void OnExit(ExitEventArgs e)
