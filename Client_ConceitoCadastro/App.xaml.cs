@@ -1,6 +1,7 @@
 ﻿using Client_ConceitoCadastro.Core.Application;
 using Client_ConceitoCadastro.Core.Application.Ports;
 using Client_ConceitoCadastro.Core.Application.UseCases.GetZipCode;
+using Client_ConceitoCadastro.Infrastructure.ZipCode;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Http;
@@ -14,7 +15,14 @@ public partial class App : Application
         .ConfigureServices((ctx, services) =>
         {
             //// HTTP/Infra
-            services.AddHttpClient();
+            //services.AddHttpClient();
+            services.AddHttpClient<ICepLookupService, ViaCepLookupService>(c => c.Timeout = TimeSpan.FromSeconds(8));
+            services.AddHttpClient<ICepLookupService, ViaCepLookupService>(c =>
+            {
+                c.BaseAddress = new Uri("https://viacep.com.br");
+                c.Timeout = TimeSpan.FromSeconds(8);
+            });
+            // and later: await _http.GetAsync($"/ws/{normalizedCep}/json/", ct);
 
             //// CEP (troque aqui por CorreiosSoapCepLookupService  se quiser)
             services.AddTransient<ICepLookupService, ViaCepLookupService>();
