@@ -2,7 +2,7 @@
 namespace Client_ConceitoCadastro.Core.Domain;
 
 // Core/Contracts
-public sealed record Address(
+public record Address(
     string ZipCode,
     string Street,
     string Neighborhood,

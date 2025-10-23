@@ -7,7 +7,7 @@ namespace Client_ConceitoCadastro
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(AddressViewModel vm)
+        public MainWindow(DeliveryViewModel vm)
         {
             InitializeComponent();
             DataContext = vm;            

@@ -34,7 +34,6 @@
     <Folder Include="Infrastructure\Correios\" />
     <Folder Include="Infrastructure\Http\" />
     <Folder Include="Infrastructure\Observability\Serilog\" />
-    <Folder Include="Infrastructure\Persistence\" />
     <Folder Include="Infrastructure\Resilience\" />
     <Folder Include="ArchitectureDiagrams\" />
     <Folder Include="Tests\" />

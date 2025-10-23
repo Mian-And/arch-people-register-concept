@@ -1,10 +1,14 @@
 ﻿using Client_ConceitoCadastro.Core.Application;
 using Client_ConceitoCadastro.Core.Application.Ports;
 using Client_ConceitoCadastro.Core.Application.UseCases.GetZipCode;
+using Client_ConceitoCadastro.Core.Application.UseCases.SendMessage;
+using Client_ConceitoCadastro.Infrastructure.Persistence;
 using Client_ConceitoCadastro.Infrastructure.ZipCode;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Http;
+using System.IO;
 using System.Windows;
 
 namespace Client_ConceitoCadastro;
@@ -14,6 +18,16 @@ public partial class App : Application
     public static IHost AppHost { get; } = Host.CreateDefaultBuilder()
         .ConfigureServices((ctx, services) =>
         {
+            // EF/DB
+            services.AddDbContext<AppDbContext>(opt =>
+            {
+                var dbPath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                    "Client_ConceitoCadastro", "app.db");
+                Directory.CreateDirectory(Path.GetDirectoryName(dbPath)!);
+                opt.UseSqlite($"Data Source={dbPath}");
+            });
+
             //// HTTP/Infra
             //services.AddHttpClient();
             services.AddHttpClient<ICepLookupService, ViaCepLookupService>(c => c.Timeout = TimeSpan.FromSeconds(8));
@@ -27,13 +41,15 @@ public partial class App : Application
             //// CEP (troque aqui por CorreiosSoapCepLookupService  se quiser)
             services.AddTransient<ICepLookupService, ViaCepLookupService>();
             //services.AddTransient<ICepLookupService, CorreiosSoapCepLookupService>();
-
+            
+            services.AddScoped<IDeliveryRepository, DeliveryRepository>();
+            services.AddScoped<CreateDeliveryHandler>();
             //use cases
             services.AddTransient<GetZipCodeHandler>();
 
             // View + VM
+            services.AddTransient<DeliveryViewModel>();
             services.AddSingleton<MainWindow>();
-            services.AddTransient<AddressViewModel>();
         })
         .Build();
 
