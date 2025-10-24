@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using Client_ConceitoCadastro.Core.Application.Ports;
+using Client_ConceitoCadastro.Core.Domain;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Client_ConceitoCadastro;

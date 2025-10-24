@@ -1,8 +1,9 @@
 ﻿using System;
+namespace Client_ConceitoCadastro.Core.Domain;
 
 // Core/Contracts
-public sealed record Address(
-    string Cep,
+public record Address(
+    string ZipCode,
     string Street,
     string Neighborhood,
     string City,

@@ -2,11 +2,22 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net9.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Core\**" />
+    <Compile Remove="Infrastructure\**" />
+    <EmbeddedResource Remove="Core\**" />
+    <EmbeddedResource Remove="Infrastructure\**" />
+    <None Remove="Core\**" />
+    <None Remove="Infrastructure\**" />
+    <Page Remove="Core\**" />
+    <Page Remove="Infrastructure\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
@@ -27,16 +38,13 @@
     <Folder Include="Api\Filters\Auth\Swagger\" />
     <Folder Include="Clients\AngularSPA\" />
     <Folder Include="Clients\WPFApp\" />
-    <Folder Include="Core\Application\DTOs\" />
-    <Folder Include="Core\Application\UseCases\UpdateAddress\" />
-    <Folder Include="Core\Domain\BusinessRules\" />
-    <Folder Include="Core\Domain\Events\" />
-    <Folder Include="Infrastructure\Correios\" />
-    <Folder Include="Infrastructure\Http\" />
-    <Folder Include="Infrastructure\Observability\Serilog\" />
-    <Folder Include="Infrastructure\Resilience\" />
     <Folder Include="ArchitectureDiagrams\" />
     <Folder Include="Tests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Core\Core.csproj" />
+    <ProjectReference Include="Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
