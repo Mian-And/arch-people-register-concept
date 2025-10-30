@@ -22,7 +22,10 @@ public partial class App : Application
             // EF/DB
             services.AddDbContext<AppDbContext>(opt =>
             {
-                opt.UseSqlite($"Data Source={SqlitePaths.GetDbPath()}");
+                opt.UseSqlite($"Data Source={SqlitePaths.GetDbPath()}")
+                .EnableSensitiveDataLogging()
+                .LogTo(msg => System.Diagnostics.Debug.WriteLine(msg),
+                Microsoft.Extensions.Logging.LogLevel.Information);
                 //var dbPath = Path.Combine(
                 //    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                 //    "Client_ConceitoCadastro", "app.db");
