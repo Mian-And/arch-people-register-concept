@@ -15,8 +15,8 @@ namespace Client_ConceitoCadastro.Infrastructure.Persistence
         public AppDbContext CreateDbContext(string[] args)
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseSqlite("Data Source=design-time.db") // apenas para migrations
-                .Options;
+           .UseSqlite($"Data Source={SqlitePaths.GetDbPath()}") // usa o MESMO path
+           .Options;
 
             return new AppDbContext(options);
         }

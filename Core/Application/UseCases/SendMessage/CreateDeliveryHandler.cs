@@ -10,9 +10,15 @@ using System.Threading.Tasks;
 namespace Client_ConceitoCadastro.Core.Application.UseCases.SendMessage
 {
     public sealed record CreateDeliveryCommand(
-       string RecipientName, string Message,
-       string Cep, string Street, string Neighborhood, string City, string State,
-       string HouseNumber, string? Complement);
+       string RecipientName, 
+       string Message,
+       string Cep, 
+       string Street, 
+       string Neighborhood, 
+       string City, 
+       string State,
+       string HouseNumber, 
+       string? Complement);
 
     public sealed class CreateDeliveryHandler
     {

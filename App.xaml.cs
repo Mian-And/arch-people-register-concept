@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Http;
 using System.IO;
+using System.Runtime.InteropServices.JavaScript;
 using System.Windows;
 
 namespace Client_ConceitoCadastro;
@@ -21,11 +22,12 @@ public partial class App : Application
             // EF/DB
             services.AddDbContext<AppDbContext>(opt =>
             {
-                var dbPath = Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                    "Client_ConceitoCadastro", "app.db");
-                Directory.CreateDirectory(Path.GetDirectoryName(dbPath)!);
-                opt.UseSqlite($"Data Source={dbPath}");
+                opt.UseSqlite($"Data Source={SqlitePaths.GetDbPath()}");
+                //var dbPath = Path.Combine(
+                //    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                //    "Client_ConceitoCadastro", "app.db");
+                //Directory.CreateDirectory(Path.GetDirectoryName(dbPath)!);
+                //opt.UseSqlite($"Data Source={dbPath}");
             });
 
             //// HTTP/Infra
@@ -56,6 +58,9 @@ public partial class App : Application
     protected override async void OnStartup(StartupEventArgs e)
     {
         await AppHost.StartAsync();
+        using var scope = AppHost.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        await db.Database.MigrateAsync();            // aplica migrations pendentes no arquivo configurado abaixo
 
         var main = AppHost.Services.GetRequiredService<MainWindow>();
         // se precisar da VM via DI:
